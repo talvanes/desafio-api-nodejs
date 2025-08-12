@@ -15,12 +15,17 @@ type Params = {
 
 type Body = {
   title: string
+  // description
+  // author
+  // keywords
 }
 
+// List courses
 server.get("/courses", (_, reply) => {
   return reply.send({ courses });
 });
 
+// Course details
 server.get("/courses/:id", (request, reply) => {
   const { id } = request.params as Params;
 
@@ -32,6 +37,7 @@ server.get("/courses/:id", (request, reply) => {
   return reply.status(404).send();
 });
 
+// Create a new course
 server.post("/courses", (request, reply) => {
   const courseId = randomUUID();
   const { title: courseTitle } = request.body as Body;
@@ -47,6 +53,17 @@ server.post("/courses", (request, reply) => {
 
   return reply.status(201).send({ courseId });
 });
+
+// Delete course
+
+// Update course title
+
+// Update course description
+
+// Update course author
+
+// Update course keywords
+
 
 server.listen({ port: 3333 }).then(() => {
   console.log("HTTP server running!");
