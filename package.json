@@ -1,0 +1,27 @@
+{
+  "name": "desafio-api-nodejs",
+  "version": "1.0.0",
+  "description": "Desafio API NodeJS, um desafio para principiantes que reúne boas práticas de desenvolvimento de APIs",
+  "homepage": "https://github.com/talvanes/desafio-api-nodejs#readme",
+  "bugs": {
+    "url": "https://github.com/talvanes/desafio-api-nodejs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/talvanes/desafio-api-nodejs.git"
+  },
+  "license": "MIT",
+  "author": "Talvanes Ferreira de Sousa",
+  "type": "module",
+  "main": "server.ts",
+  "scripts": {
+    "dev": "node --watch server.ts"
+  },
+  "dependencies": {
+    "fastify": "^5.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.1",
+    "typescript": "^5.9.2"
+  }
+}
