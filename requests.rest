@@ -2,7 +2,7 @@ GET http://127.0.0.1:3333/courses
 
 ###
 
-@courseId = 413c7bde-3988-4a15-96f6-e76be205658c
+@courseId = 1cdfc04c-4a78-4b83-993a-d54680afa0f2
 GET http://127.0.0.1:3333/courses/{{courseId}}
 
 ###

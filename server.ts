@@ -1,13 +1,9 @@
 import fastify from "fastify";
-import { randomUUID } from "node:crypto";
+import { db } from "./src/databases/client.ts";
+import { coursesTable } from "./src/databases/schema.ts";
+import { eq } from "drizzle-orm";
 
 const server = fastify();
-
-const courses = [
-  { id: "1", title: "Responsive Web Design (RWD) Course" },
-  { id: "2", title: "Vanilla JS Course" },
-  { id: "3", title: "React.js Course" },
-];
 
 type Params = {
   id: string
@@ -21,37 +17,41 @@ type Body = {
 }
 
 // List courses
-server.get("/courses", (_, reply) => {
-  return reply.send({ courses });
+server.get("/courses", async (_, reply) => {
+  const result = await db.select({
+    id: coursesTable.id,
+    title: coursesTable.title,
+  }).from(coursesTable)
+
+  return reply.send({ courses: result });
 });
 
 // Course details
-server.get("/courses/:id", (request, reply) => {
-  const { id } = request.params as Params;
+server.get("/courses/:id", async (request, reply) => {
+  const { id: courseId } = request.params as Params;
 
-  const course = courses.find((course) => course.id === id);
-  if (course) {
-    return reply.send({ course });
+  const result = await db.select().from(coursesTable).where(eq(coursesTable.id, courseId))
+  if (result.length > 0) {
+    return reply.send({ course: result[0] });
   }
 
   return reply.status(404).send();
 });
 
 // Create a new course
-server.post("/courses", (request, reply) => {
-  const courseId = randomUUID();
+server.post("/courses", async (request, reply) => {
   const { title: courseTitle } = request.body as Body;
 
   if (!courseTitle) {
     return reply.status(400).send({ message: "Course title is mandatory!" });
   }
 
-  courses.push({
-    id: courseId,
-    title: courseTitle,
-  });
+  const result = await db
+    .insert(coursesTable)
+    .values({title: courseTitle})
+    .returning()
 
-  return reply.status(201).send({ courseId });
+  return reply.status(201).send({ courseId: result[0].id });
 });
 
 // Delete course
