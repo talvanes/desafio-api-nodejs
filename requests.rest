@@ -2,7 +2,7 @@ GET http://127.0.0.1:3333/courses
 
 ###
 
-@courseId = 1cdfc04c-4a78-4b83-993a-d54680afa0f2
+@courseId = 27d0a4f0-5aa4-40d1-a913-edc36c2ed9a5
 GET http://127.0.0.1:3333/courses/{{courseId}}
 
 ###
@@ -11,5 +11,5 @@ POST http://127.0.0.1:3333/courses
 Content-Type: application/json
 
 {
-    "title": "Node.js Course"
+    "title": "Preact Course"
 }
