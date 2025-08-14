@@ -1,5 +1,5 @@
 services:
-  postgres:
+  db:
     image: postgres:17
     environment:
       POSTGRES_USER: postgres
@@ -7,3 +7,5 @@ services:
       POSTGRES_DB: desafioapidb
     ports:
       - "5432:5432"
+    volumes:
+      - ./docker/setup.sql:/docker-entrypoint-initdb.d/init.sql
