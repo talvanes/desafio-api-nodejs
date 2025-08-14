@@ -1,8 +1,8 @@
-import { coursesTable } from "../database/schema.ts";
+import { coursesTable, enrollmentsTable } from "../database/schema.ts";
 import { db } from "../database/client.ts";
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import z from "zod";
-import { and, asc, ilike, SQL } from "drizzle-orm";
+import { and, asc, count, eq, ilike, SQL } from "drizzle-orm";
 
 const RESULTS_PER_PAGE = 5
 
@@ -23,6 +23,7 @@ const getCoursesRoute: FastifyPluginAsyncZod = async (server) => {
                     courses: z.array(z.object({
                         id: z.uuid(),
                         title: z.string(),
+                        enrollments: z.number(),
                     })),
                     total: z.number()
                 }).describe('Courses displayed successfully!')
@@ -41,12 +42,15 @@ const getCoursesRoute: FastifyPluginAsyncZod = async (server) => {
                 .select({
                     id: coursesTable.id,
                     title: coursesTable.title,
+                    enrollments: count(enrollmentsTable.id),
                 })
                 .from(coursesTable)
+                .leftJoin(enrollmentsTable, eq(enrollmentsTable.courseId, coursesTable.id))
                 .where(and(...conditions))
                 .offset((page - 1) * RESULTS_PER_PAGE)
                 .limit(RESULTS_PER_PAGE)
-                .orderBy(asc(coursesTable[orderBy])),
+                .orderBy(asc(coursesTable[orderBy]))
+                .groupBy(coursesTable.id),
             db.$count(coursesTable, and(...conditions))
         ])
 

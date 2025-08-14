@@ -15,6 +15,13 @@
       "when": 1755184939928,
       "tag": "0001_demonic_red_ghost",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1755187163177,
+      "tag": "0002_uneven_randall",
+      "breakpoints": true
     }
   ]
 }
