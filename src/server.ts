@@ -1,9 +1,9 @@
 import fastify from "fastify";
 import { jsonSchemaTransform, serializerCompiler, validatorCompiler, type ZodTypeProvider } from "fastify-type-provider-zod";
 import fastifySwagger from "@fastify/swagger";
-import createCourseRoute from "./src/routes/create-course.ts";
-import getCourseByIdRoute from "./src/routes/get-course-by-id.ts";
-import getCoursesRoute from "./src/routes/get-courses.ts";
+import createCourseRoute from "./routes/create-course.ts";
+import getCourseByIdRoute from "./routes/get-course-by-id.ts";
+import getCoursesRoute from "./routes/get-courses.ts";
 import scalarApiReference from "@scalar/fastify-api-reference";
 
 const server = fastify({
@@ -28,7 +28,7 @@ if (process.env["NODE_ENV"] === 'development') {
     },
     transform: jsonSchemaTransform
   })
-  
+
   server.register(scalarApiReference, {
     routePrefix: '/docs'
   })
@@ -52,6 +52,4 @@ server.register(createCourseRoute)
 // Update course keywords
 
 
-server.listen({ port: 3333 }).then(() => {
-  console.log("HTTP server running!");
-});
+export { server }
