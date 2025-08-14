@@ -10,5 +10,5 @@ export default defineConfig({
         url: process.env["DATABASE_URL"]
     },
     out: './drizzle',
-    schema: './src/databases/schema.ts'
+    schema: './src/database/schema.ts'
 })

@@ -61,7 +61,7 @@ DATABASE_URL=postgres://postgres:postgres@localhost:5432/apidb
 
 ```
 ├── src/
-│   ├── databases/
+│   ├── database/
 │   │   ├── client.ts    # Configuração do cliente do banco de dados
 │   │   └── schema.ts    # Schema do banco de dados usando Drizzle ORM
 │   └── routes/

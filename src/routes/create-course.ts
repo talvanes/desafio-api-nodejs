@@ -1,6 +1,6 @@
 import z from "zod";
-import { coursesTable } from "../databases/schema.ts";
-import { db } from "../databases/client.ts";
+import { coursesTable } from "../database/schema.ts";
+import { db } from "../database/client.ts";
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 
 // Create a new course
