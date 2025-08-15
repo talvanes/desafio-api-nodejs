@@ -18,6 +18,6 @@ it('logins successfully', async () => {
 
     expect(response.statusCode).toBe(200)
     expect(response.body).toEqual({
-        message: 'ok'
+        token: expect.any(String)
     })
 })

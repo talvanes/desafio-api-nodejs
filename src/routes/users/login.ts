@@ -1,9 +1,11 @@
 import z from "zod";
-import { coursesTable, usersTable } from "../../database/schema.ts";
+import { usersTable } from "../../database/schema.ts";
 import { db } from "../../database/client.ts";
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import { eq } from "drizzle-orm";
 import { verify } from "argon2";
+import jwt from "jsonwebtoken";
+
 
 // User login
 const loginRoute: FastifyPluginAsyncZod = async (server) => {
@@ -16,9 +18,10 @@ const loginRoute: FastifyPluginAsyncZod = async (server) => {
                 email: z.email(),
                 password: z.string(),
             }),
-            // response: {
-            //     201: z.object({ courseId: z.uuid() }).describe("Course created successfully!")
-            // }
+            response: {
+                200: z.object({ token: z.jwt() }).describe("User authenticated successfully!"),
+                400: z.object({ message: z.string() }).describe("Invalid credentials.")
+            }
         },
     }, async (request, reply) => {
         const { email, password } = request.body
@@ -39,7 +42,18 @@ const loginRoute: FastifyPluginAsyncZod = async (server) => {
             return reply.status(400).send({ message: 'Credenciais inválidas.' })
         }
 
-        return reply.status(200).send({ message: 'ok' })
+        if (!process.env["JWT_SECRET"]) {
+            throw new Error("JWT_SECRET must be set.")
+        }
+
+        const token = jwt.sign({
+            sub: user.id,
+            role: user.role,
+        }, process.env["JWT_SECRET"], {
+            expiresIn: '1h'
+        })
+
+        return reply.status(200).send({ token })
     });
 }
 

@@ -31,10 +31,12 @@
     "fastify": "^5.5.0",
     "fastify-pino-pretty": "^5.2.0",
     "fastify-type-provider-zod": "^5.0.3",
+    "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.3",
     "zod": "^4.0.17"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.2.1",
     "@types/supertest": "^6.0.3",
     "@vitest/coverage-v8": "^3.2.4",

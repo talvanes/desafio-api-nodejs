@@ -1,14 +1,19 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYWExMDBhNi0xMmE4LTQ0OTctYTA4MS1hYzY2ZTAyZjUzZGQiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc1NTI4ODcyNCwiZXhwIjoxNzU1MjkyMzI0fQ.VEn-XJktfCIyWU8iRReBNyMwGiG8fEoyVCJUwKN26ek
+
 GET http://127.0.0.1:3333/courses
+Authorization: {{token}}
 
 ###
 
 @courseId = 92c07d8a-08bc-4b98-8a9f-c14341482563
 GET http://127.0.0.1:3333/courses/{{courseId}}
+Authorization: {{token}}
 
 ###
 
 POST http://127.0.0.1:3333/courses
 Content-Type: application/json
+Authorization: {{token}}
 
 {
     "title": "React.js Course"
