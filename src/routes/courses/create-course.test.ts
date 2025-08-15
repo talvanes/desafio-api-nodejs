@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest'
 import request from 'supertest'
-import { server } from '../server.ts'
+import { server } from '../../server.ts'
 import { faker } from '@faker-js/faker'
 
 it('creates a new course successfully', async () => {

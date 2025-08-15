@@ -1,5 +1,5 @@
-import { coursesTable, enrollmentsTable } from "../database/schema.ts";
-import { db } from "../database/client.ts";
+import { coursesTable, enrollmentsTable } from "../../database/schema.ts";
+import { db } from "../../database/client.ts";
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import z from "zod";
 import { and, asc, count, eq, ilike, SQL } from "drizzle-orm";

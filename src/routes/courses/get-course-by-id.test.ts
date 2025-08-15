@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest'
 import request from 'supertest'
-import { server } from '../server.ts'
-import makeCourse from '../tests/factories/make-course.ts'
+import { server } from '../../server.ts'
+import makeCourse from '../../tests/factories/make-course.ts'
 
 it('gets course info by ID', async () => {
     await server.ready()

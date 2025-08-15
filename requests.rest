@@ -2,7 +2,7 @@ GET http://127.0.0.1:3333/courses
 
 ###
 
-@courseId = 27d0a4f0-5aa4-40d1-a913-edc36c2ed9a5
+@courseId = 92c07d8a-08bc-4b98-8a9f-c14341482563
 GET http://127.0.0.1:3333/courses/{{courseId}}
 
 ###
@@ -11,5 +11,15 @@ POST http://127.0.0.1:3333/courses
 Content-Type: application/json
 
 {
-    "title": "Preact Course"
+    "title": "React.js Course"
+}
+
+###
+
+POST http://127.0.0.1:3333/sessions
+Content-Type: application/json
+
+{
+    "email": "Cesar.Xavier@live.com",
+    "password": "123456"
 }
