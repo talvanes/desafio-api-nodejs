@@ -4,6 +4,7 @@ import { db } from "../../database/client.ts";
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import { eq } from "drizzle-orm";
 import checkRequestJWT from "../hooks/check-request-jwt.ts";
+import getAuthenticatedUserFromRequest from "../../utils/get-authenticated-user-from-request.ts";
 
 // Get course by ID
 const getCourseByIdRoute: FastifyPluginAsyncZod = async (server) => {
@@ -30,6 +31,8 @@ const getCourseByIdRoute: FastifyPluginAsyncZod = async (server) => {
             }
         }
     }, async (request, reply) => {
+        const user = getAuthenticatedUserFromRequest(request)
+
         const { id: courseId } = request.params
 
         const result = await db
