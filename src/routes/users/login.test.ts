@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest'
 import request from 'supertest'
 import { server } from '../../server.ts'
-import makeUser from '../../tests/factories/make-user.ts'
+import { makeUser } from '../../tests/factories/make-user.ts'
 
 it('logins successfully', async () => {
     await server.ready()

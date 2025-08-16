@@ -1,4 +1,4 @@
-import type {FastifyRequest} from 'fastify'
+import type { FastifyRequest } from 'fastify'
 
 export default function getAuthenticatedUserFromRequest(request: FastifyRequest) {
     const user = request.user

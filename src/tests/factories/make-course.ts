@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { db } from "../../database/client.ts";
 import { coursesTable } from "../../database/schema.ts";
 
-export default async function makeCourse(title?: string) {
+export async function makeCourse(title?: string) {
     const result = await db
         .insert(coursesTable)
         .values({

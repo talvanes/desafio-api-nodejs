@@ -1,11 +1,11 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYWExMDBhNi0xMmE4LTQ0OTctYTA4MS1hYzY2ZTAyZjUzZGQiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc1NTI4ODcyNCwiZXhwIjoxNzU1MjkyMzI0fQ.VEn-XJktfCIyWU8iRReBNyMwGiG8fEoyVCJUwKN26ek
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYWExMDBhNi0xMmE4LTQ0OTctYTA4MS1hYzY2ZTAyZjUzZGQiLCJyb2xlIjoibWFuYWdlciIsImlhdCI6MTc1NTM1NTY2MSwiZXhwIjoxNzU1MzU5MjYxfQ.yhcRPB0KkfUHSi-WJC1kHWz33AQD8WVImD9FzF0N3HM
 
-GET http://127.0.0.1:3333/courses
+GET http://127.0.0.1:3333/courses?orderBy=title
 Authorization: {{token}}
 
 ###
 
-@courseId = 92c07d8a-08bc-4b98-8a9f-c14341482563
+@courseId = a72a42f1-0ec9-4c4e-beb6-c3e73c712f2c
 GET http://127.0.0.1:3333/courses/{{courseId}}
 Authorization: {{token}}
 
@@ -16,7 +16,7 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-    "title": "React.js Course"
+    "title": "Preact.js Course"
 }
 
 ###

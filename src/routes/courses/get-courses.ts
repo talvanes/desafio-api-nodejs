@@ -4,6 +4,7 @@ import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import z from "zod";
 import { and, asc, count, eq, ilike, SQL } from "drizzle-orm";
 import checkRequestJWT from "../hooks/check-request-jwt.ts";
+import checkUserRole from "../hooks/check-user-role.ts";
 
 const RESULTS_PER_PAGE = 5
 
@@ -12,6 +13,7 @@ const getCoursesRoute: FastifyPluginAsyncZod = async (server) => {
     server.get("/courses", {
         preHandler: [
             checkRequestJWT,
+            checkUserRole('manager'),
         ],
         schema: {
             tags: ['courses'],
